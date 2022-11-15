@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="org.turkeyjug.model.Meslek" table="meslek" catalog="firmaveritabani">
+        <id name="meslek_id" type="java.lang.Integer">
+            <column name="meslek_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="personel" class="org.turkeyjug.model.Personel" fetch="select">
+            <column name="personel_id" not-null="true" />
+        </many-to-one>
+        <property name="meslekAdi" type="string">
+            <column name="meslek_adi" precision="6" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="org.turkeyjug.model.Personel" table="personel" catalog="firmaveritabani">
+        <id name="personel_id" type="java.lang.Integer">
+            <column name="personel_id" />
+            <generator class="identity" />
+        </id>
+        
+        <property name="adi" type="string">
+            <column name="adi" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="soyadi" type="string">
+            <column name="soyadi" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="cinsiyeti" type="string">
+            <column name="cinsiyeti" length="50" not-null="true" unique="true" />
+        </property>
+         <property name="eposta" type="string">
+            <column name="eposta" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="parolasi" type="string">
+            <column name="parolasi" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="secili"  type="yes_no">
+        	<column name="secili" not-null="true" unique="true" />
+        </property>
+        
+        <set name="mesleks" table="meslek"
+				inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="personel_id" not-null="true" />
+            </key>
+            <one-to-many class="org.turkeyjug.model.Meslek" />
+        </set>
+    </class>
+</hibernate-mapping>
